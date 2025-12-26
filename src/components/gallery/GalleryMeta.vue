@@ -1,0 +1,68 @@
+<template>
+  <div class="pic-meta">
+    <h2 class="pic-meta__title">Пейзаж</h2>
+    <table class="pic-meta__table">
+      <tbody>
+        <tr class="pic-meta__row">
+          <th class="pic-meta__cell pic-meta__cell--key">Техника</th>
+          <td class="pic-meta__cell pic-meta__cell--val">Холст. масло</td>
+        </tr>
+        <tr class="pic-meta__row">
+          <th class="pic-meta__cell pic-meta__cell--key">Размер</th>
+          <td class="pic-meta__cell pic-meta__cell--val">
+            {{ rand(10, 90) }} x {{ rand(10, 90) }}
+          </td>
+        </tr>
+        <tr class="pic-meta__row">
+          <th class="pic-meta__cell pic-meta__cell--key">Год</th>
+          <td class="pic-meta__cell pic-meta__cell--val">
+            {{ rand(1988, 2025) }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+
+<script setup>
+const rand = (min, max) => Math.round(Math.random() * (max - min) + min);
+</script>
+
+<style lang="scss" scoped>
+.pic-meta {
+  padding: 0 6px 6px;
+
+  &__title {
+    padding-block: 0.4em;
+    line-height: 1.4;
+    font-size: 26px;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  &__row {
+    border-block-start: 1px solid;
+  }
+
+  &__cell {
+    padding: 0.2em 0.4em;
+    font-size: 14px;
+
+    &--key {
+      width: 15%;
+      text-align: end;
+      font-weight: normal;
+      white-space: nowrap;
+    }
+
+    &--val {
+      text-align: start;
+      font-weight: 700;
+      border-inline-start: 1px solid;
+    }
+  }
+}
+</style>

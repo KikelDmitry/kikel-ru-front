@@ -1,15 +1,45 @@
 <template>
   <nav class="menu">
     <ul class="menu__list">
-      <li class="menu__item">
-        <a
-          href="#"
-          class="menu__link"
-          >Menu</a
-        >
+      <li
+        v-for="item in router.options.routes"
+        :key="item.path"
+        class="menu__item">
+        <template v-if="item.children">
+          <span class="menu__link">{{ item.name }}</span>
+          <ul class="menu__sub-list">
+            <li
+              v-for="subItem in item.children"
+              class="menu__sub-item">
+              <router-link :to="`${item.path}/${subItem.path}`">
+                {{ subItem.name }}</router-link
+              >
+            </li>
+          </ul>
+        </template>
+        <router-link
+          v-else
+          :to="item.path"
+          class="menu__link">
+          {{ item.name }}
+        </router-link>
       </li>
     </ul>
   </nav>
 </template>
 
-<script setup></script>
+<script setup>
+import router from '@/router';
+import { RouterLink } from 'vue-router';
+</script>
+
+<style lang="scss" scoped>
+.menu {
+  &__list,
+  &__sub-list {
+    position: absolute;
+    display: flex;
+    overflow: hidden;
+  }
+}
+</style>

@@ -1,5 +1,9 @@
 <template>
-  <div>homepage</div>
+  <kikel-hero></kikel-hero>
+  <kikel-board></kikel-board>
 </template>
 
-<script setup></script>
+<script setup>
+import KikelHero from './KikelHero.vue';
+import KikelBoard from './KikelBoard.vue';
+</script>

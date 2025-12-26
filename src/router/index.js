@@ -1,14 +1,13 @@
-import ContentView from '@/views/ContentView.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import KikelHome from '@/components/KikelHome.vue';
-import GalleryView from '@/views/GalleryView.vue';
+import { galleryRoutes } from './gallery';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Главная',
       component: KikelHome,
       meta: {
         title: 'Художник Владимир Кикель',
@@ -17,22 +16,14 @@ const router = createRouter({
     },
     {
       path: '/about',
-      name: 'about',
-      component: ContentView,
+      name: 'Об авторе',
+      component: () => import('@/views/ContentView.vue'),
       meta: {
         title: 'Об авторе',
         description: 'Description of Vladimir Kikel about',
       },
     },
-    {
-      path: '/pictures',
-      name: 'pictures',
-      component: GalleryView,
-      meta: {
-        title: 'Галерея',
-        description: 'Description of gallery',
-      },
-    },
+    galleryRoutes,
   ],
 });
 
