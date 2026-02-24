@@ -1,8 +1,12 @@
 <template>
-  <header class="header">Header</header>
+  <header class="header">
+    <main-menu></main-menu>
+  </header>
 </template>
 
-<script setup></script>
+<script setup>
+import MainMenu from '@/components/MainMenu.vue';
+</script>
 
 <style lang="scss" scoped>
 .header {

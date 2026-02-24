@@ -1,95 +1,115 @@
 <template>
   <section class="hero">
     <div class="hero__inner">
-      <div class="hero__slider slider">
-        <ul class="slider__list">
-          <li class="slider__item">
-            <img
-              src="/mock-pic/slon_s.png"
-              alt=""
-              class="slider__img" />
-          </li>
-        </ul>
-        <router-link
-          to="/pictures/italia/"
-          class="slider__btn"
-          >Смотреть в галерее</router-link
-        >
+      <hero-slider class="hero__slider"></hero-slider>
+      <div class="hero__bio bio">
+        <div class="bio__content">
+          <h1 class="bio__title">Кикель Владимир</h1>
+          <p class="bio__subtitle">Живописец</p>
+          <img
+            style="margin-left: -4px; margin-top: 20px"
+            width="80"
+            height="80"
+            src="@images/logo.svg"
+            alt="Kikel Vladimir Logo" />
+        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router';
+import { ref } from 'vue';
+import HeroSlider from './HeroSlider.vue';
 </script>
 
 <style lang="scss" scoped>
 .hero {
   --color-hero: #666;
+
   width: 100%;
-  height: 500px;
-  background-color: var(--color-hero);
+  height: 800px;
+  max-height: 100vh;
 
   &__inner {
     position: relative;
     max-width: 1920px;
     height: 100%;
     margin: 0 auto;
-    background-color: rgba(119, 119, 119, 0.411);
+    background-color: var(--color-hero);
 
-    &::before,
-    &::after {
+    &::before {
       content: '';
       position: absolute;
       z-index: 1;
       inset: 0;
       pointer-events: none;
+      box-shadow: inset 0 0 50px 30px var(--color-bg);
     }
+  }
 
-    &::before {
-      background-color: rgba(119, 119, 119, 0.411);
-    }
+  &__bio {
+  }
 
-    &::after {
-      background-image: radial-gradient(
-        circle to center,
-        transparent,
-        var(--color-hero)
-      );
-    }
+  &__slider {
   }
 }
 
-.slider {
-  position: relative;
-  height: 100%;
+.bio {
+  position: absolute;
+  inset: 0;
+  transition: transform 600ms ease-in-out;
+  transform: translateX(0);
+  text-shadow: 0.1em 0.1em 0.2em #000;
+  overflow: hidden;
+  pointer-events: none;
 
-  &__list {
-    height: 100%;
-  }
-  &__item {
-    height: 100%;
+  &__content {
+    margin: 3em 6em;
+    padding: 2em 3em;
+    width: fit-content;
     position: relative;
-  }
-  &__img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    inset: 0;
-    object-fit: cover;
-  }
-  &__btn {
-    position: absolute;
     z-index: 1;
-    bottom: 40px;
-    left: 50%;
-    translate: -50% 0;
-    background-color: #000;
-    padding: 0.2em 0.5em;
-    border-radius: 0.2em;
-    font-size: 24px;
-    box-shadow: 2px 2px 2px #333;
+    pointer-events: all;
+    // background-image: linear-gradient(
+    //   to right,
+    //   rgb(0 0 0 / 0.2) 90%,
+    //   transparent
+    // );
+    background-color: rgb(0 0 0 / 0.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(2px) grayscale(20%) brightness(80%);
+    border-radius: 12px;
+    animation: appearance 400ms ease-in-out forwards;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  &__title {
+    font-size: 36px;
+  }
+
+  &__subtitle {
+    font-size: 28px;
+  }
+
+  &--hidden {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes appearance {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
   }
 }
 </style>

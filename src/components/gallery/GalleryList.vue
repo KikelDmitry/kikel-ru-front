@@ -4,7 +4,7 @@
     <li
       v-for="(picture, idx) in pictures"
       class="gallery__item">
-      <gallery-picture></gallery-picture>
+      <gallery-picture :picture="picture"></gallery-picture>
     </li>
   </ul>
 </template>
@@ -23,22 +23,22 @@ const props = defineProps({
 @use '@styles/meta/mixins';
 
 .gallery {
+  // --gal-row: minmax(auto, 100vh);
   --gal-column: minmax(354px, 1fr);
   --gal-min: 354px;
-  --gal-gap: 15px;
+  --gal-gap-col: 2vw;
+  --gal-gap-col-row: calc(4.5vh + 0.3vw);
 
   display: grid;
   grid-template-columns: repeat(auto-fill, var(--gal-column));
-  gap: var(--gal-gap);
-  padding: var(--gal-gap);
+  // grid-template-rows: repeat(auto-fit, var(--gal-row));
+  gap: var(--gal-gap-col-row) var(--gal-gap-col);
+  padding: var(--gal-gap-col);
 
   @include mixins.lessThan(768) {
     --gal-column: 354px;
 
     justify-content: center;
-  }
-  @include mixins.lessThan(420) {
-    --gal-column: 1fr;
   }
 
   &__item {

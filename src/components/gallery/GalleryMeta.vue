@@ -10,7 +10,7 @@
         <tr class="pic-meta__row">
           <th class="pic-meta__cell pic-meta__cell--key">Размер</th>
           <td class="pic-meta__cell pic-meta__cell--val">
-            {{ rand(10, 90) }} x {{ rand(10, 90) }}
+            {{ rand(10, 90) }} x {{ rand(10, 90) }} см
           </td>
         </tr>
         <tr class="pic-meta__row">
@@ -25,12 +25,17 @@
 </template>
 
 <script setup>
+defineProps({
+  meta: {
+    type: Object,
+  },
+});
 const rand = (min, max) => Math.round(Math.random() * (max - min) + min);
 </script>
 
 <style lang="scss" scoped>
 .pic-meta {
-  padding: 0 6px 6px;
+  padding: 0 20px 6px;
 
   &__title {
     padding-block: 0.4em;
@@ -44,7 +49,7 @@ const rand = (min, max) => Math.round(Math.random() * (max - min) + min);
   }
 
   &__row {
-    border-block-start: 1px solid;
+    border-block-start: 1px solid rgb(255 255 255 / 0.3);
   }
 
   &__cell {
@@ -61,7 +66,7 @@ const rand = (min, max) => Math.round(Math.random() * (max - min) + min);
     &--val {
       text-align: start;
       font-weight: 700;
-      border-inline-start: 1px solid;
+      border-inline-start: 1px solid rgb(255 255 255 / 0.3);
     }
   }
 }

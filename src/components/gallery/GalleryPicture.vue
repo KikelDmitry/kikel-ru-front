@@ -1,39 +1,64 @@
 <template>
-  <article class="picture">
-    <picture
-      class="picture__pic"
-      :class="{ 'is-loaded': isLoaded }">
-      <source srcset="" />
-      <img
-        @load="isLoaded = true"
-        loading="lazy"
-        src="/mock-pic/slon_s.png"
-        alt=""
-        class="picture__img" />
-    </picture>
-    <gallery-meta class="picture__data"></gallery-meta>
-  </article>
+  <figure
+    class="picture"
+    :id="picture.id">
+    <a
+      @click.prevent
+      :href="`https://lh3.googleusercontent.com/d/${picture.id}=s800`"
+      class="picture__link">
+      <picture
+        class="picture__pic"
+        :class="{
+          'is-loaded': isLoaded,
+          'is-error': isError,
+        }">
+        <!-- <source srcset="" type="" /> -->
+        <img
+          @error="isError = true"
+          @load="isLoaded = true"
+          :src="`https://lh3.googleusercontent.com/d/${picture.id}=s800`"
+          :alt="picture.name"
+          loading="lazy"
+          class="picture__img" />
+      </picture>
+    </a>
+    <figcaption class="picture__data">
+      <gallery-meta :meta="picture.meta"></gallery-meta>
+    </figcaption>
+  </figure>
 </template>
 
 <script setup>
 import GalleryMeta from './GalleryMeta.vue';
 import { ref } from 'vue';
 const isLoaded = ref(false);
+const isError = ref(false);
+
+defineProps({
+  picture: {
+    type: Object,
+    required: true,
+  },
+  title: {
+    type: String,
+  },
+  url: {
+    type: String,
+  },
+});
 </script>
 
 <style lang="scss" scoped>
 .picture {
   width: 100%;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
+  display: grid;
+  margin: 0;
 
   &__pic {
     aspect-ratio: 1/1;
     display: flex;
     transform: scale(0.7);
-    opacity: 0;
     transition:
       transform 500ms,
       opacity 500ms;
@@ -44,7 +69,7 @@ const isLoaded = ref(false);
       position: absolute;
       inset: 0;
       border-radius: inherit;
-      background-color: rgb(0 0 0 / 0.5);
+      background-color: rgb(var(--color-secondary) / 0.5);
     }
 
     &::after {
@@ -54,22 +79,34 @@ const isLoaded = ref(false);
       top: 50%;
       left: 50%;
       translate: -50% -50%;
-      width: 30px;
-      height: 30px;
-      background-color: #fff;
+      width: 80px;
+      height: 80px;
+      background-image: url('@images/logo_animated.svg');
     }
 
     img {
-      margin: auto;
+      max-height: 100%;
+      margin: auto auto 0;
     }
 
-    &.is-loaded {
-      opacity: 1;
+    &.is-loaded,
+    &.is-error {
       transform: scale(1);
 
       &::before,
       &::after {
         content: none;
+      }
+    }
+
+    &.is-error {
+      img {
+        display: none;
+      }
+
+      &::after {
+        content: '';
+        background-image: url('@images/logo.svg');
       }
     }
   }

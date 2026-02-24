@@ -12,6 +12,7 @@ const router = createRouter({
       meta: {
         title: 'Художник Владимир Кикель',
         description: 'Description of Vladimir Kikel homepage',
+        noHeader: true,
       },
     },
     {

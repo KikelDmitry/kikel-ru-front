@@ -1,21 +1,22 @@
-import { ref, reactive } from 'vue';
+import { ref } from 'vue';
 import { defineStore } from 'pinia';
-// import { api } from './gapi';
+import { api } from './api';
 
 export const useGallery = defineStore('gallery', () => {
-  const pictures = reactive(Array(100));
-  const loading = ref(false);
+  const pictures = ref([]);
+  const isLoaded = ref(false);
   const isError = ref(false);
   const getPictures = async () => {
-    // await fetch(api);
-    // .then((res) => res.json())
-    // .then((json) => (pictures.value = json))
-    // .catch(() => isError.value = true)
-    // .finally(() => (loading.value = false));
+    await fetch(api)
+      .then((res) => res.json())
+      .then((json) => (pictures.value = json.files))
+      .catch(() => isError.value = true)
+      .finally(() => isLoaded.value = true);
+
   };
   return {
     pictures,
-    loading,
+    isLoaded,
     isError,
     getPictures,
   };
