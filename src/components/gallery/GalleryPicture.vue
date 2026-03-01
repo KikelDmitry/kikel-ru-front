@@ -4,7 +4,7 @@
     :id="picture.id">
     <a
       @click.prevent
-      :href="`https://lh3.googleusercontent.com/d/${picture.id}=s800`"
+      :href="`#${picture.id}`"
       class="picture__link">
       <picture
         class="picture__pic"
@@ -16,14 +16,18 @@
         <img
           @error="isError = true"
           @load="isLoaded = true"
-          :src="`https://lh3.googleusercontent.com/d/${picture.id}=s800`"
-          :alt="picture.name"
+          :src="`/pictures/${picture.n}.jpg`"
+          :alt="picture.title"
           loading="lazy"
           class="picture__img" />
       </picture>
     </a>
     <figcaption class="picture__data">
-      <gallery-meta :meta="picture.meta"></gallery-meta>
+      <gallery-meta
+        :title="picture.title"
+        :technique="picture.technique"
+        :dimensions="picture.dimensions"
+        :year="picture.year"></gallery-meta>
     </figcaption>
   </figure>
 </template>
@@ -34,23 +38,19 @@ import { ref } from 'vue';
 const isLoaded = ref(false);
 const isError = ref(false);
 
-defineProps({
+const props = defineProps({
   picture: {
     type: Object,
     required: true,
   },
-  title: {
-    type: String,
-  },
-  url: {
-    type: String,
-  },
 });
+const { title, technique } = props;
 </script>
 
 <style lang="scss" scoped>
 .picture {
   width: 100%;
+  height: 100%;
   position: relative;
   display: grid;
   margin: 0;
@@ -109,6 +109,10 @@ defineProps({
         background-image: url('@images/logo.svg');
       }
     }
+  }
+
+  &__data {
+    margin-block-start: auto;
   }
 }
 </style>

@@ -42,9 +42,9 @@ const props = defineProps({
   }
 
   &__item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
     text-align: center;
   }
 }

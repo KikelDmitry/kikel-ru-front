@@ -1,23 +1,21 @@
 <template>
   <div class="pic-meta">
-    <h2 class="pic-meta__title">Пейзаж</h2>
+    <h2 class="pic-meta__title">{{ title }}</h2>
     <table class="pic-meta__table">
       <tbody>
         <tr class="pic-meta__row">
           <th class="pic-meta__cell pic-meta__cell--key">Техника</th>
-          <td class="pic-meta__cell pic-meta__cell--val">Холст. масло</td>
+          <td class="pic-meta__cell pic-meta__cell--val">{{ technique }}</td>
         </tr>
         <tr class="pic-meta__row">
           <th class="pic-meta__cell pic-meta__cell--key">Размер</th>
           <td class="pic-meta__cell pic-meta__cell--val">
-            {{ rand(10, 90) }} x {{ rand(10, 90) }} см
+            {{ dimensions }} см.
           </td>
         </tr>
         <tr class="pic-meta__row">
           <th class="pic-meta__cell pic-meta__cell--key">Год</th>
-          <td class="pic-meta__cell pic-meta__cell--val">
-            {{ rand(1988, 2025) }}
-          </td>
+          <td class="pic-meta__cell pic-meta__cell--val">{{ year }}</td>
         </tr>
       </tbody>
     </table>
@@ -25,16 +23,12 @@
 </template>
 
 <script setup>
-defineProps({
-  meta: {
-    type: Object,
-  },
-});
-const rand = (min, max) => Math.round(Math.random() * (max - min) + min);
+const props = defineProps(['title', 'technique', 'dimensions', 'year']);
 </script>
 
 <style lang="scss" scoped>
 .pic-meta {
+  width: 100%;
   padding: 0 20px 6px;
 
   &__title {

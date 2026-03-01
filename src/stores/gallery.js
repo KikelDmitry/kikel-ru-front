@@ -9,7 +9,7 @@ export const useGallery = defineStore('gallery', () => {
   const getPictures = async () => {
     await fetch(api)
       .then((res) => res.json())
-      .then((json) => (pictures.value = json.files))
+      .then((json) => (pictures.value = json.sheet))
       .catch(() => isError.value = true)
       .finally(() => isLoaded.value = true);
 
