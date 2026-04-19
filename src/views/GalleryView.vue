@@ -1,7 +1,6 @@
 <template>
   <div class="container">
     <gallery-list :pictures="pictures"></gallery-list>
-    <pre>{{ pictures }}</pre>
   </div>
   <gallery-viewer></gallery-viewer>
 </template>
@@ -18,7 +17,6 @@ const { pictures, isLoaded, isError } = storeToRefs(store);
 
 onMounted(() => {
   store.getPictures();
-  console.log(pictures.value);
 });
 </script>
 

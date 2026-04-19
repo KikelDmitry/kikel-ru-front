@@ -10,13 +10,16 @@
 </template>
 
 <script setup>
+// import Masonry from 'masonry-layout';
 import GalleryPicture from './GalleryPicture.vue';
+// import '/node_modules/masonry-layout/masonry.js';
 const props = defineProps({
   pictures: {
     type: Array,
     required: true,
   },
 });
+// const sas = new Masonry();
 </script>
 
 <style lang="scss" scoped>

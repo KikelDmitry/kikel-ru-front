@@ -1,1 +1,1 @@
-export const api = 'http://localhost:4300/pictures/seascape';
+export const api = 'localhost:4300/pictures/seascape';

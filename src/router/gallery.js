@@ -16,7 +16,7 @@ export const galleryRoutes = {
       },
     },
     {
-      path: 'still_life',
+      path: 'stilllife',
       name: 'Натюрморт',
       meta: {
         title: 'Натюрморт',

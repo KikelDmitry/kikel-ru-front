@@ -2,53 +2,112 @@
   <section class="board">
     <div class="board__grid">
       <div class="board__about">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt quod
-          consequatur error! Similique qui ex reiciendis rerum. Ea id temporibus
-          iure ad, ipsum tempore odio illum aut nesciunt sit a? Magni molestiae
-          totam consectetur placeat a assumenda, eligendi omnis, nesciunt
-          dolores aut quidem quae in corporis saepe, inventore debitis delectus
-          tempora quisquam sed praesentium quibusdam explicabo. Hic illo beatae
-          corporis ex atque reprehenderit rem aperiam, repellat vitae
-          repellendus eius? Harum blanditiis suscipit ea nam distinctio facilis
-          non earum mollitia aliquam incidunt, illo sit officiis excepturi qui,
-          quaerat omnis quia at nemo, possimus optio? Expedita voluptatum quasi
-          quam culpa aliquam sapiente?
+        <img
+          class="board__avatar"
+          src="@images/avatar0.jpg"
+          alt="Кикель Владимир Фото" />
+        <p class="board__paragraph">
+          <strong>Кикель Владимир Борисович</strong> родился в Ростове-на-Дону в
+          1964 году.
+        </p>
+        <p class="board__paragraph">
+          Закончил живописно-педагогическое отделение РХУ им. М.Б. Грекова. С
+          2005 года член ТСХ России.
+        </p>
+        <p class="board__paragraph">
+          Занимаюсь в основном станковой живописью, отчасти монументальной.
+          Стараюсь писать то, что нравится и на заказ.
+        </p>
+        <p class="board__paragraph">
+          Технические предпочтения: масло, акварель, темпера, холст, бумага.
+          Отдельная любовь – левкас – шлифованная гипсовая поверхность на
+          жестком основании (дерево, OSB и пр.) которая позволяет прописывать
+          мелкие детали.
         </p>
       </div>
-      <div class="board__contacts"></div>
-      <div class="board__block"></div>
+      <div class="board__categories">
+        <kikel-categories></kikel-categories>
+      </div>
+      <div class="board__contacts">
+        <kikel-contacts></kikel-contacts>
+      </div>
     </div>
   </section>
 </template>
 
-<script setup></script>
+<script setup>
+import KikelCategories from './KikelCategories.vue';
+import KikelContacts from './KikelContacts.vue';
+</script>
 
 <style lang="scss" scoped>
 @use '@styles/meta/mixins';
 .board {
   &__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    // display: grid;
+    // grid-template-columns: 1.4fr 1.2fr 1fr;
+    gap: 3vmin;
     width: 100%;
     max-width: 1920px;
     margin: 0 auto;
+    padding-block: 1.4em;
+    padding-inline: 1em;
+
+    @include mixins.moreThan(1930) {
+      padding-inline: 0;
+    }
+
+    @include mixins.lessThan(1024) {
+      // grid-template-columns: 48.5% 48.5%;
+      // grid-template-rows: minmax(400px, 1fr) auto;
+    }
+    @include mixins.lessThan(600) {
+      // grid-template-columns: 1fr;
+    }
+  }
+
+  &__about,
+  &__categories,
+  &__contacts {
+    flex: 1 1 310px;
   }
 
   &__about {
-    padding: 1.4em 1em;
+    font-size: 18px;
+  }
 
-    @include mixins.moreThan(1930) {
-      padding-inline-start: 0;
+  &__categories {
+    @include mixins.lessThan(1024) {
+      // height: 0;
+      // min-height: 100%;
+      // overflow: auto;
+    }
+  }
+
+  &__avatar {
+    width: 220px;
+    max-width: 50%;
+    float: inline-start;
+    margin-inline-end: 0.6em;
+    margin-block-end: 0.3em;
+  }
+
+  &__paragraph {
+    &:not(:last-child) {
+      margin-block-end: 1em;
     }
   }
 
   &__contacts {
-    background-color: #777;
+    @include mixins.lessThan(1024) {
+      grid-column: 1/3;
+    }
   }
 
   &__block {
-    background-color: #9a9a9a;
+    // background-color: #9a9a9a;
   }
 }
 </style>

@@ -24,10 +24,12 @@ import HeroSlider from './HeroSlider.vue';
 </script>
 
 <style lang="scss" scoped>
+@use '@styles/meta/mixins';
 .hero {
-  --color-hero: #666;
+  --color-hero: var(--color-bg);
 
   width: 100%;
+  min-height: 475px;
   height: 800px;
   max-height: 100vh;
 
@@ -65,8 +67,9 @@ import HeroSlider from './HeroSlider.vue';
   pointer-events: none;
 
   &__content {
-    margin: 3em 6em;
-    padding: 2em 3em;
+    font-size: 48px;
+    margin: 1.5em 3em;
+    padding: 1em 1.5em;
     width: fit-content;
     position: relative;
     z-index: 1;
@@ -82,6 +85,24 @@ import HeroSlider from './HeroSlider.vue';
     border-radius: 12px;
     animation: appearance 400ms ease-in-out forwards;
 
+    @include mixins.lessThan(1920) {
+      font-size: 36px;
+    }
+
+    @include mixins.lessThan(768) {
+      font-size: 28px;
+      // margin: 3em 4em;
+    }
+
+    @include mixins.lessThan(475) {
+      margin: 1em;
+      // font-size: 24px;
+    }
+
+    @include mixins.lessThan(415) {
+      margin: 5%;
+    }
+
     &::before {
       content: '';
       position: absolute;
@@ -90,11 +111,11 @@ import HeroSlider from './HeroSlider.vue';
   }
 
   &__title {
-    font-size: 36px;
+    font-size: 1em;
   }
 
   &__subtitle {
-    font-size: 28px;
+    font-size: 0.77em;
   }
 
   &--hidden {
