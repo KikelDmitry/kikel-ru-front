@@ -39,7 +39,27 @@ import { RouterLink } from 'vue-router';
   &__sub-list {
     position: absolute;
     display: flex;
-    overflow: hidden;
+    // overflow: hidden;
+  }
+  &__list {
+  }
+  &__sub-list {
+    flex-direction: column;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 300ms,
+      visibility 300ms;
+  }
+  &__item {
+    &:hover {
+      .menu__sub-list {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: all;
+      }
+    }
   }
 }
 </style>

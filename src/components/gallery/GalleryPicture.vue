@@ -16,7 +16,7 @@
         <img
           @error="isError = true"
           @load="isLoaded = true"
-          :src="`/pictures/${picture.n}.jpg`"
+          :src="`${galleryPath}/${picture.n}.jpg`"
           :alt="picture.title"
           loading="lazy"
           class="picture__img" />
@@ -34,6 +34,7 @@
 
 <script setup>
 import GalleryMeta from './GalleryMeta.vue';
+import { galleryPath } from '@/router/gallery';
 import { ref } from 'vue';
 const isLoaded = ref(false);
 const isError = ref(false);

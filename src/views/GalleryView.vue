@@ -1,13 +1,17 @@
 <template>
-  <div class="container">
-    <gallery-list :pictures="pictures"></gallery-list>
+  <div class="gallery-page">
+    <gallery-menu class="gallery-page__menu"></gallery-menu>
+    <gallery-list
+      class="gallery-page__list"
+      :pictures="pictures"></gallery-list>
   </div>
   <gallery-viewer></gallery-viewer>
 </template>
 
 <script setup>
-import GalleryViewer from '@/components/gallery/GalleryViewer.vue';
+import GalleryMenu from '@/components/gallery/GalleryMenu.vue';
 import GalleryList from '@/components/gallery/GalleryList.vue';
+import GalleryViewer from '@/components/gallery/GalleryViewer.vue';
 import { useGallery } from '@/stores/gallery';
 import { storeToRefs } from 'pinia';
 import { onMounted } from 'vue';
@@ -22,8 +26,10 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 // temp block
-.container {
-  margin: auto;
-  max-width: 99%;
+.gallery-page {
+  margin: 0 auto;
+  max-width: 1920px;
+  display: grid;
+  grid-template-columns: auto 1fr;
 }
 </style>

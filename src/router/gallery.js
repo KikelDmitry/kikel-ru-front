@@ -1,7 +1,9 @@
+import GalleryView from '@/views/GalleryView.vue';
+
 export const galleryRoutes = {
-  path: '/pictures',
+  path: '/gallery',
   name: 'Живопись',
-  component: () => import('@/views/GalleryView.vue'),
+  component: GalleryView,
   meta: {
     title: 'Галерея',
     description: 'Description of gallery',
@@ -40,7 +42,7 @@ export const galleryRoutes = {
       },
     },
     {
-      path: 'italia',
+      path: 'italy',
       name: 'Итальянский пейзаж',
       meta: {
         title: 'Итальянский пейзаж',
@@ -57,3 +59,5 @@ export const galleryRoutes = {
     },
   ],
 };
+
+export const galleryPath = galleryRoutes.path;

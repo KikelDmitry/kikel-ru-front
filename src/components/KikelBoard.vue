@@ -7,8 +7,8 @@
           src="@images/avatar0.jpg"
           alt="Кикель Владимир Фото" />
         <p class="board__paragraph">
-          <strong>Кикель Владимир Борисович</strong> родился в Ростове-на-Дону в
-          1964 году.
+          <strong class="board__name">Кикель Владимир Борисович</strong> родился
+          в Ростове-на-Дону в 1964 году.
         </p>
         <p class="board__paragraph">
           Закончил живописно-педагогическое отделение РХУ им. М.Б. Грекова. С
@@ -46,25 +46,15 @@ import KikelContacts from './KikelContacts.vue';
   &__grid {
     display: flex;
     flex-wrap: wrap;
-    // display: grid;
-    // grid-template-columns: 1.4fr 1.2fr 1fr;
-    gap: 3vmin;
+    gap: 3vmax 3vmin;
     width: 100%;
     max-width: 1920px;
     margin: 0 auto;
-    padding-block: 1.4em;
+    padding-block: 40px;
     padding-inline: 1em;
 
     @include mixins.moreThan(1930) {
       padding-inline: 0;
-    }
-
-    @include mixins.lessThan(1024) {
-      // grid-template-columns: 48.5% 48.5%;
-      // grid-template-rows: minmax(400px, 1fr) auto;
-    }
-    @include mixins.lessThan(600) {
-      // grid-template-columns: 1fr;
     }
   }
 
@@ -84,6 +74,10 @@ import KikelContacts from './KikelContacts.vue';
       // min-height: 100%;
       // overflow: auto;
     }
+  }
+
+  &__name {
+    font-size: 120%;
   }
 
   &__avatar {

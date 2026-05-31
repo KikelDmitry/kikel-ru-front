@@ -6,7 +6,7 @@
         class="categories__item">
         <router-link
           class="categories__link"
-          :to="`/pictures/${category.alias}`"
+          :to="`${galleryPath}/${category.alias || null}`"
           >{{ category.title }}</router-link
         >
       </li>
@@ -16,6 +16,7 @@
 
 <script setup>
 import { RouterLink } from 'vue-router';
+import { galleryPath } from '@/router/gallery';
 import { ref, onMounted } from 'vue';
 
 const categories = ref([]);

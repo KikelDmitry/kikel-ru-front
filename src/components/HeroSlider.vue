@@ -27,7 +27,7 @@
       </a>
     </div>
     <router-link
-      :to="activeSlide.meta.category"
+      :to="`${galleryPath}/${activeSlide.meta.category}`"
       class="slider__btn"
       >Смотреть в галерее</router-link
     >
@@ -37,6 +37,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { RouterLink } from 'vue-router';
+import { galleryPath } from '@/router/gallery';
 
 const slides = ref([]);
 const slidesCount = ref(0);
@@ -156,23 +157,23 @@ onUnmounted(() => {
     bottom: 100px;
     left: 50%;
     translate: -50% 0;
-    background-color: rgb(0 0 0 / 0.1);
+    background-color: rgb(0 0 0 / 0.6);
     color: #ddd;
     backdrop-filter: blur(2px);
     padding: 0.3em 0.6em;
     border-radius: 0.3em;
-    border: 1px solid rgb(255 255 255 / 0.2);
+    border: 1px solid rgb(128 128 128 / 0.1);
     font-size: 28px;
     text-align: center;
     text-shadow:
       -1px -1px 1px #eee,
       1px 1px 1px #000;
-    box-shadow: 0 0 10px rgb(0 0 0 / 0.2);
+    // box-shadow: 0 0 10px rgb(0 0 0 / 0.5);
     white-space: nowrap;
     transition: background-color 200ms;
 
     &:hover {
-      background-color: rgb(0 0 0 / 0.7);
+      background-color: rgb(0 0 0 / 0.9);
     }
   }
 

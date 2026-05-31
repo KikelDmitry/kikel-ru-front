@@ -14,6 +14,13 @@
             alt="Kikel Vladimir Logo" />
         </div>
       </div>
+      <a
+        class="hero__go-down"
+        href="#foldline">
+      </a>
+      <span
+        class="visually-hidden"
+        id="foldline"></span>
     </div>
   </section>
 </template>
@@ -35,7 +42,7 @@ import HeroSlider from './HeroSlider.vue';
 
   &__inner {
     position: relative;
-    max-width: 1920px;
+    max-width: 100%;
     height: 100%;
     margin: 0 auto;
     background-color: var(--color-hero);
@@ -55,6 +62,33 @@ import HeroSlider from './HeroSlider.vue';
 
   &__slider {
   }
+
+  &__go-down {
+    width: 64px;
+    height: 64px;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset-block-end: 0;
+    left: 50%;
+    translate: -50% 0;
+    margin-top: 100px;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1;
+    background-image: linear-gradient(to bottom, transparent, #000);
+    text-shadow: 3px 3px 4px #000;
+
+    &::before {
+      content: '↓';
+    }
+
+    @media (min-height: 888px) {
+      display: none;
+    }
+  }
 }
 
 .bio {
@@ -69,7 +103,7 @@ import HeroSlider from './HeroSlider.vue';
   &__content {
     font-size: 48px;
     margin: 1.5em 3em;
-    padding: 1em 1.5em;
+    padding: 0.7em 1em;
     width: fit-content;
     position: relative;
     z-index: 1;

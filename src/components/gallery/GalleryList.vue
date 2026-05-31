@@ -1,5 +1,4 @@
 <template>
-  gallery
   <ul class="gallery">
     <li
       v-for="(picture, idx) in pictures"
@@ -26,7 +25,6 @@ const props = defineProps({
 @use '@styles/meta/mixins';
 
 .gallery {
-  // --gal-row: minmax(auto, 100vh);
   --gal-column: minmax(354px, 1fr);
   --gal-min: 354px;
   --gal-gap-col: 2vw;
@@ -34,7 +32,6 @@ const props = defineProps({
 
   display: grid;
   grid-template-columns: repeat(auto-fill, var(--gal-column));
-  // grid-template-rows: repeat(auto-fit, var(--gal-row));
   gap: var(--gal-gap-col-row) var(--gal-gap-col);
   padding: var(--gal-gap-col);
 
@@ -45,9 +42,6 @@ const props = defineProps({
   }
 
   &__item {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
     text-align: center;
   }
 }
